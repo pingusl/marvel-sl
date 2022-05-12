@@ -18,7 +18,7 @@ const marvel_key = process.env.MARVEL_API_KEY;
 app.get("/characters", async (req, res) => {
   try {
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${marvel_key}`
+      `https://lereacteur-marvel-api.herokuapp.com/characters?name=${req.query.name}&apiKey=${marvel_key}`
     );
     res.json(response.data);
   } catch (error) {
