@@ -20,18 +20,18 @@ app.get("/characters", async (req, res) => {
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${marvel_key}`
     );
-    console.log(response.results);
     res.json(response.data);
   } catch (error) {
     res.status(400).json({ error: { message: error.message } });
   }
 });
 
-//----Route COMICS----//
-app.get("/comics", async (req, res) => {
+//----Route CHARACTER----//
+app.get("/character/:characterId", async (req, res) => {
+  const id_character = req.params.characterId;
   try {
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${marvel_key}`
+      `https://lereacteur-marvel-api.herokuapp.com/character/${id_character}?apiKey=${marvel_key}`
     );
     console.log(response.results);
     res.json(response.data);
@@ -40,6 +40,20 @@ app.get("/comics", async (req, res) => {
   }
 });
 
+//----COMICS route----//
+app.get("/comics", async (req, res) => {
+  try {
+    const response = await axios.get(
+      `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${marvel_key}`
+    );
+    // console.log(response.results);
+    res.json(response.data);
+  } catch (error) {
+    res.status(400).json({ error: { message: error.message } });
+  }
+});
+
+//----Welcome route----//
 app.get("/", (req, res) => {
   console.log("route welcome");
   res.status(200).json("Welcome");
