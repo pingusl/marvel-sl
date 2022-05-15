@@ -17,6 +17,7 @@ const marvel_key = process.env.MARVEL_API_KEY;
 //----Route CHARACTERS----//
 app.get("/characters", async (req, res) => {
   try {
+    // console.log("route characters");
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/characters?limit=${req.query.limit}&skip=${req.query.skip}&name=${req.query.name}&apiKey=${marvel_key}`
     );
